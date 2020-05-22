@@ -3,13 +3,14 @@
 <html lang="en">
 
 {% load static %}
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
-    <title>{{ navName }}</title>
+    <title>Blog Detail</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
 
@@ -52,7 +53,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand active" href="{% url 'home' %}">{{ navName }}</a>
+        <a class="navbar-brand" href="{% url 'home' %}">{{ navName }}</a>
         <button class=" navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,44 +64,23 @@
                 <a class="nav-item nav-link" href="#">Twitter</a>
                 {% endcomment %}
                 <a class="nav-item nav-link" href="{% static 'DavidWachtelBio.pdf' %}">Resume</a>
-                <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
             </div>
         </div>
     </nav>
 </header>
 
 <main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1>{{ navName }}</h1>
-            <p class="lead text-muted">{{ jumboText }}</p>
-            <img class="img-fluid" src="{% static "P1000583long2.jpg" %}" height="300" width="200">
-            <p>
-                <a href="mailto:david@icedogllc.com" class="btn btn-primary my-2">Contact</a>
-            </p>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                {% for  job in jobList.all %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <!-- dcw: bootstrap version for img (svg) is commented out to be consistent with training video -->
-                            <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                            <img class="img-fluid" src="{{ job.image.url }}" height="600" width="400"/>
-                            <div class="card-body">
-                                <p class="card-text">{{ job.summary }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+    <div class="container">
+        <h2 class="text-center pt-3">{{blogDetail.title}}</h2>
+        <hr>
+            {{ blogDetail.pub_date_pretty }}
+            <br>
+            <img class="img-fluid" src="{{ blogDetail.image.url }}" height="200" width="200" alt="">
+            <br>
+            <br>
+            <p>{{ blogDetail.body}}...</p>
     </div>
-
 </main>
 
 <footer class="text-muted">
